@@ -1,0 +1,57 @@
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        String[] account = new String[4];
+        Vector<String> history = new Vector();
+
+        account[0] = ("Thomas");
+        account[1] = ("1000");
+        account[2] = (history.toString());
+
+
+        boolean repeat = true;
+
+        while(repeat){
+            question();
+            Scanner myObj = new Scanner(System.in);
+            int n = myObj.nextInt();
+            switch(n){
+                case 1 -> withdraw(account, history);
+                case 2 -> deposit(account, history);
+                case 3 -> history(account, history);
+                case 4 -> repeat = false;
+            }
+        }
+    }
+    static void question(){
+
+        System.out.println("What do you want to do next?");
+        System.out.println("1. Withdraw money");
+        System.out.println("2. Deposit money");
+        System.out.println("3. Show history");
+        System.out.println("Exit program");
+    }
+    static void withdraw(String[] account, Vector<String> history){
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("How much do you want to withdraw?");
+        int amount = myObj.nextInt();
+        account[1] = String.valueOf((Integer.valueOf(account[1]) - amount));
+        System.out.println("You now have " + account[1] + "$ in your bank account");
+        history.add("-"+amount);
+    }
+    static void deposit(String[] account, Vector<String> history){
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("How much do you want to withdraw?");
+        int amount = myObj.nextInt();
+        account[1] = String.valueOf((Integer.valueOf(account[1]) + amount));
+        System.out.println("You now have " + account[1] + "$ in your bank account");
+        history.add("+"+amount);
+    }
+    static void history(String[] account, Vector<String> history){
+        System.out.println(history);
+    }
+}
