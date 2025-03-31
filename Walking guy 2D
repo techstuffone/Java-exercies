@@ -1,0 +1,70 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.io.PrintStream;
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main {
+    public Main() {
+    }
+
+    public static void main(String[] args) {
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Choose size of the vector");
+        int x = myObj.nextInt();
+        Vector<Vector<String>> matrix = new Vector(x);
+
+        for(int j = 0; j < x; ++j) {
+            matrix.add(new Vector(x));
+        }
+
+        for(int i = 0; i < x; ++i) {
+            for(int j = 0; j < x; ++j) {
+                ((Vector)matrix.get(i)).add(j, "_");
+            }
+        }
+
+        String me = "O";
+        boolean e = true;
+        int adX = x / 2;
+        int adY = x / 2;
+        ((Vector)matrix.get(x / 2)).set(x / 2, me);
+
+        while(e) {
+            for(int i = 0; i < x; ++i) {
+                for(int j = 0; j < x; ++j) {
+                    ((Vector)matrix.get(i)).set(j, "_");
+                }
+            }
+
+            ((Vector)matrix.get(adX)).set(adY, me);
+
+            for(int j = 0; j < x; ++j) {
+                for(int i = 0; i < x; ++i) {
+                    PrintStream var10000 = System.out;
+                    String var10001 = (String)((Vector)matrix.get(i)).get(j);
+                    var10000.print(var10001 + " ");
+                }
+
+                System.out.println();
+            }
+
+            int action = myObj.nextInt();
+            switch (action) {
+                case 1 -> ++adX;
+                case 2 -> ++adY;
+                case 3 -> --adX;
+                case 4 -> --adY;
+                case 5 -> e = false;
+            }
+
+            for(int i = 0; i < 20; ++i) {
+                System.out.println();
+            }
+        }
+
+    }
+}
