@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main{
+    public static void main(String[] argh){
+        Scanner myObj = new Scanner(System.in);
+
+        Vector<Integer> numbers = new Vector<>();
+        boolean repeat = true;
+
+        addNumber(numbers);
+
+        while (repeat) {
+            System.out.println("Do you want to repeat?");
+            System.out.println("1. Repeat");
+            System.out.println("2. Order numbers");
+            System.out.println("3. Search for number");
+            System.out.println("4.  Exit");
+            int x = myObj.nextInt();
+            switch(x){
+                case 1 -> addNumber(numbers);
+                case 2 -> orderNumber(numbers);
+                case 3 -> findNumber(numbers);
+                case 4 -> repeat = false;
+            }
+        }
+    }
+    static void addNumber(Vector<Integer> numbers){
+
+        System.out.println("Choose your numbers");
+        Scanner myObj = new Scanner(System.in);
+        int num = myObj.nextInt();
+        numbers.add(num);
+        System.out.println(numbers);
+    }
+    static void orderNumber(Vector<Integer> numbers){
+
+        boolean problem = true;
+
+        while(problem){
+            problem = false;
+            for (int j = 0; j < numbers.size() - 1; j++){
+                if (numbers.get(j) < numbers.get(j+1)){
+                    int tmp = numbers.get(j);
+                    numbers.set(j, numbers.get(j+1));
+                    numbers.set(j+1, tmp);
+                    problem = true;
+                }
+            }
+        }
+        System.out.println(numbers);
+    }
+    static void findNumber(Vector<Integer> numbers) {
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("Which number are we looking for");
+        int x = myObj.nextInt();
+        boolean found = false;
+        for (int i = 0; i < numbers.size(); i++) {
+            if (x == numbers.get(i)) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("Number found!!!\n\n");
+        } else {
+            System.out.println("Number not found \n\n");
+        }
+    }
+}
