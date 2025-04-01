@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Your starting budget is 100 $");
+        System.out.println("Welcome to rolling dices game, guess their combined value");
+
+
+        int budget = 100;
+        boolean repeat = true;
+
+        while(repeat){
+
+            if (!myObj.hasNextInt()) {
+                System.out.println("Invalid input! Please enter a number.");
+                myObj.next();
+                continue;
+            }
+            int value = myObj.nextInt();
+
+            int dice1 = (int)(Math.random() * 6 + 1);
+            int dice2 = (int)(Math.random() * 6 + 1);
+            int combined = dice1 + dice2;
+
+
+            System.out.println("Dice 1: " + dice1);
+            System.out.println("Dice 2: " + dice2);
+            System.out.println("Value: " + combined);
+
+            if (value == combined){
+                System.out.println("Congratulation, you won!!!");
+
+                budget = budget + 10;
+
+            }else {
+                System.out.println("Better luck next time");
+                --budget;
+            }
+
+            System.out.println("Would you like to try again?");
+            System.out.println("1. Continue");
+            System.out.println("2. Exit");
+            int x = myObj.nextInt();
+            switch (x){
+                case 1: System.out.println("Your budget is " + budget + "$");
+                    System.out.println("Choose next number");
+                    break;
+                case 2: repeat = false;
+                break;
+            }
+        }
+    }
+}
