@@ -32,7 +32,6 @@ public class Main{
             System.out.println("Make an answer (Five in total)");
             answers[i] = myObj.nextLine().trim();
         }
-        myObj.close();
         return new String[][] {questions, answers};
     }
 }
