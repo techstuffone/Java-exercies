@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] argh){
+        String[][] dataQuiz = makeQuiz();
+        playQuiz(dataQuiz[0], dataQuiz[1]);
+    }
+    static void playQuiz(String[] questions, String[] answers){
+        Scanner myObj = new Scanner(System.in);
+
+        for(int i = 0; i < questions.length; i++){
+            System.out.println(questions[i]);
+            String answer = myObj.nextLine().trim();
+
+            if(answer.equalsIgnoreCase(answers[i].trim())){
+                System.out.println("Good job!");
+            }else{
+                System.out.println("Wrong, you stupid!");
+            }
+        }
+        myObj.close();
+    }
+    static String[][] makeQuiz(){
+        Scanner myObj = new Scanner(System.in);
+
+        String[] questions = new String[5];
+        String[] answers = new String[5];
+
+        for(int i = 0; i < 5; i++){
+            System.out.println("Make a question (Five in total)");
+            questions[i] = myObj.nextLine().trim();
+            System.out.println("Make an answer (Five in total)");
+            answers[i] = myObj.nextLine().trim();
+        }
+        myObj.close();
+        return new String[][] {questions, answers};
+    }
+}
