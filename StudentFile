@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            File file = new File("student.txt");
+
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("Reading from existing file:");
+            }
+            int i = 0;
+            int value = 0;
+            int tmp = 0;
+
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String next = sc.nextLine();
+                System.out.println(next);
+                    try{
+                        tmp = (Integer.valueOf(next));
+                        i++;
+                        value += tmp;
+                    }catch(NumberFormatException e){
+                        System.out.println("Exception");
+
+                    }
+            }
+            double result = (double)value / i;
+            System.out.println("The number is: " + result);
+            sc.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
