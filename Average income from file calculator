@@ -1,0 +1,29 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        double currentSum = 0;
+        int count = 0;
+        try{
+            File file = new File("student.txt");
+
+            Scanner myObj = new Scanner(file);
+
+            while(myObj.hasNextLine()) {
+                String[] tokens = ((myObj.nextLine()).trim()).split(":");
+                try {
+                    currentSum += Double.parseDouble(tokens[1]);
+                    count++;
+
+                }catch (NumberFormatException e) {
+                }
+            }
+
+        }catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+        System.out.printf("The final sum is: %.2f"  ,currentSum/count);
+    }
+}
+
